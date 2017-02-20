@@ -48,6 +48,10 @@ class MpdfService implements FactoryInterface
             mkdir(self::JPGRAPH_DIR, 0777, true);
         }
 
+        define("_MPDF_TEMP_PATH", MpdfService::TEMP_DIR);
+        define("_MPDF_TTFONTDATAPATH", MpdfService::TTFONTDATA_DIR);
+        define("_JPGRAPH_PATH", MpdfService::JPGRAPH_DIR);
+
         return new mPDF();
     }
 }

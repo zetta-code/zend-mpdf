@@ -51,18 +51,13 @@ class ConfigProvider implements ConfigProviderInterface
             'lazy_services' => [
                 'class_map' => [
                     View\Renderer\MpdfRenderer::class => View\Renderer\MpdfRenderer::class,
-                ],
-                'proxies_target_dir' => 'data/Proxy',
-                'write_proxy_files' => true
+                ]
             ],
             'delegators' => [
                 View\Renderer\MpdfRenderer::class => [
                     LazyServiceFactory::class
                 ]
-            ],
-            'shared' => [
-                Service\MpdfService::class => false
-            ],
+            ]
         ];
     }
 
