@@ -1,0 +1,39 @@
+{
+  "name": "zetta-code/zend-mpdf",
+  "type": "library",
+  "description": "Suporte a utilização MPDF no zend Framework 3.",
+  "license": "MIT",
+  "keywords": [
+    "pdf",
+    "mpdf",
+    "zf3"
+  ],
+  "homepage": "https://github.com/zetta-code/zend-mpdf",
+  "authors": [
+    {
+      "name": "Thiago S. Santos",
+      "email": "thiagos.xsantos@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^5.6 || ^7.0",
+    "zendframework/zend-stdlib": "^3.0",
+    "mpdf/mpdf": "^6.1",
+    "ocramius/proxy-manager": "^1.0"
+  },
+  "require-dev": {
+    "zendframework/zend-mvc": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Zetta\\ZendMPDF\\": "src/"
+    }
+  },
+  "extra": {
+    "zf": {
+      "component": "Zetta\\ZendMPDF",
+      "config-provider": "Zetta\\ZendMPDF\\ConfigProvider"
+    }
+  }
+}
