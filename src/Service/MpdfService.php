@@ -33,14 +33,7 @@ class MpdfService implements FactoryInterface
     /**
      * @var array
      */
-    protected $fontdata = [
-        'trebuchetms' => [
-            'R'  => 'trebuchet-ms.ttf',
-            'B'  => 'trebuchet-ms-bd.ttf',
-            'I'  => 'trebuchet-ms-it.ttf',
-            'BI' => 'trebuchet-ms-bi.ttf',
-        ],
-    ];
+    protected $fontdata = [];
 
     /**
      * {@inheritdoc}
