@@ -30,14 +30,14 @@ class MpdfModel extends ViewModel
     /**
      * @var array
      */
-    protected $options = array(
-        'paperSize' => 'a4',
+    protected $options = [
+        'paperSize' => 'A4',
         'paperOrientation' => 'portrait',
         'basePath' => '/',
-        'fileName' => 'pdf',
+        'filename' => 'filename.pdf',
         'destination' => self::DESTINO_DOWNLOAD_NAVEGADOR,
         'debug' => false,
-    );
+    ];
 
     /**
      *

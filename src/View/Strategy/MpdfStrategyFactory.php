@@ -17,9 +17,6 @@ class MpdfStrategyFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        // Foi necessario incluir o arquivo mpdf.php porque estava dando erro ao usar o lazy proxy.
-        //require_once __DIR__ . '/../../../../../../vendor/mpdf/mpdf/mpdf.php';
-
         $mpdfRenderer = $container->get(MpdfRenderer::class);
         $mpdfStrategy = new MpdfStrategy($mpdfRenderer);
 

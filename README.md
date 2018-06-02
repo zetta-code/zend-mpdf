@@ -6,7 +6,7 @@ A instalação do MPDFModule utiliza o PHP Composer. Para mais informações sob
 
 ## Requerimentos
   - [Zend Framework 3](http://github.com/zendframework/zendframework)
-  - [MPDF ^6.1](http://github.com/mpdf/mpdf)
+  - [MPDF ^7.1](http://github.com/mpdf/mpdf)
 
 ### Installation
 
@@ -33,8 +33,8 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         $mpdf = new MpdfModel();
-        $mpdf->setOption('paperSize', 'A3'); // padrão "A4"
-        $mpdf->setOption('paperOrientation', 'landscape'); // Padrão "portrait"
+        $mpdf->setOption('paperSize', 'A3') // padrão "A4"
+            ->setOption('paperOrientation', 'landscape'); // Padrão "portrait"
         return $mpdf;
     }
 }

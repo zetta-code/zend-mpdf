@@ -7,39 +7,103 @@
 namespace Zetta\ZendMPDF\Service;
 
 use Interop\Container\ContainerInterface;
+use Mpdf\Config\ConfigVariables;
+use Mpdf\Config\FontVariables;
+use Mpdf\Mpdf;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use mPDF;
+use Zend\Stdlib\ArrayUtils;
 
 class MpdfService implements FactoryInterface
 {
+    /**
+     * @var string
+     */
+    protected $dir = './data/mpdf';
 
-    const MPDF_DIR = 'data/mpdf/';
-    const TEMP_DIR = self::MPDF_DIR . 'temp/';
-    const TTFONTDATA_DIR = self::MPDF_DIR . 'ttfontdata/';
-    const JPGRAPH_DIR = self::MPDF_DIR . 'jpgraph/';
+    /**
+     * @var string
+     */
+    protected $temp = '/tmp';
+
+    /**
+     * @var string
+     */
+    protected $ttfonts = '/ttfonts';
+
+    /**
+     * @var array
+     */
+    protected $fontdata = [
+        'trebuchetms' => [
+            'R'  => 'trebuchet-ms.ttf',
+            'B'  => 'trebuchet-ms-bd.ttf',
+            'I'  => 'trebuchet-ms-it.ttf',
+            'BI' => 'trebuchet-ms-bi.ttf',
+        ],
+    ];
 
     /**
      * {@inheritdoc}
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        if (!file_exists(self::MPDF_DIR)) {
-            mkdir(self::MPDF_DIR, 0777, true);
+        $config = $container->get('config');
+        $config = isset($config['zend_mpdf']) ? $config['zend_mpdf'] : [];
+
+        if (isset($config['dir'])) {
+            $this->dir = $config['dir'];
         }
-        if (!file_exists(self::TEMP_DIR)) {
-            mkdir(self::TEMP_DIR, 0777, true);
+        if (isset($config['tmp'])) {
+            $this->temp = $config['tmp'];
         }
-        if (!file_exists(self::TTFONTDATA_DIR)) {
-            mkdir(self::TTFONTDATA_DIR, 0777, true);
+        $this->temp = $this->dir . $this->temp;
+        if (isset($config['ttfonts'])) {
+            $this->ttfonts = $config['ttfonts'];
         }
-        if (!file_exists(self::JPGRAPH_DIR)) {
-            mkdir(self::JPGRAPH_DIR, 0777, true);
+        $this->ttfonts = $this->dir . $this->ttfonts;
+        if (isset($config['fontdata'])) {
+            $this->fontdata = $config['fontdata'];
         }
 
-        define("_MPDF_TEMP_PATH", MpdfService::TEMP_DIR);
-        define("_MPDF_TTFONTDATAPATH", MpdfService::TTFONTDATA_DIR);
-        define("_JPGRAPH_PATH", MpdfService::JPGRAPH_DIR);
+        $this->makeDirs();
 
-        return new mPDF();
+        $config = $this->mpdfConfig();
+
+        return new Mpdf($config);
+    }
+
+    public function makeDirs()
+    {
+        if (!file_exists($this->dir)) {
+            mkdir($this->dir, 0777, true);
+        }
+        if (!file_exists($this->temp)) {
+            mkdir($this->temp, 0777, true);
+        }
+        if (!file_exists($this->ttfonts)) {
+            mkdir($this->ttfonts, 0777, true);
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function mpdfConfig()
+    {
+        $defaultConfig = (new ConfigVariables())->getDefaults();
+        $fontDir = $defaultConfig['fontDir'];
+        $fontDir[] = $this->ttfonts;
+
+        $fontConfig = (new FontVariables())->getDefaults();
+        $fontdata = $fontConfig['fontdata'];
+        if (count($this->fontdata) > 0) {
+            $fontdata = ArrayUtils::merge($fontConfig['fontdata'], $this->fontdata);
+        }
+
+        return [
+            'fontDir' => $fontDir,
+            'tempDir' => $this->temp,
+            'fontdata' => $fontdata,
+        ];
     }
 }

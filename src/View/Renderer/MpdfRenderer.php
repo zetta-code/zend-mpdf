@@ -6,15 +6,15 @@
 
 namespace Zetta\ZendMPDF\View\Renderer;
 
+use Mpdf\Mpdf;
 use Zend\View\Model\ModelInterface;
 use Zend\View\Renderer\RendererInterface;
 use Zend\View\Resolver\ResolverInterface;
-use mPDF;
 
 class MpdfRenderer implements RendererInterface
 {
     /**
-     * @var mPDF
+     * @var Mpdf
      */
     protected $mpdf = null;
 
@@ -41,7 +41,7 @@ class MpdfRenderer implements RendererInterface
     /**
      * @var string
      */
-    protected $fileName;
+    protected $filename;
 
     /**
      * @var string
@@ -54,7 +54,7 @@ class MpdfRenderer implements RendererInterface
     protected $debug = false;
 
     /**
-     * @return mPDF
+     * @return Mpdf
      */
     public function getEngine()
     {
@@ -96,20 +96,20 @@ class MpdfRenderer implements RendererInterface
             return $html;
         }
 
-
-        $format = substr($this->getPaperOrientation(), 0, 1);
-        if($format === 'l'){
+        $orientation = $this->getPaperOrientation();
+        $format = substr($orientation, 0, 1);
+        if ($format === 'l') {
             $paperSize = $this->getPaperSize() . '-' . $format;
         } else {
             $paperSize = $this->getPaperSize();
         }
 
-        $this->mpdf->_setPageSize($paperSize, $this->getPaperOrientation());
+        $this->mpdf->_setPageSize($paperSize, $orientation);
 
         // escreve o conteudo no PDF
         $this->mpdf->WriteHTML($html);
 
-        $fileName = $this->getFileName();
+        $fileName = $this->getFilename();
         if (isset($fileName)) {
             if (substr($fileName, -4) != '.pdf') {
                 $fileName .= '.pdf';
@@ -119,7 +119,7 @@ class MpdfRenderer implements RendererInterface
     }
 
     /**
-     * @return mPDF
+     * @return Mpdf
      */
     public function getMpdf()
     {
@@ -127,7 +127,7 @@ class MpdfRenderer implements RendererInterface
     }
 
     /**
-     * @param mPDF $mpdf
+     * @param Mpdf $mpdf
      * @return MpdfRenderer
      */
     public function setMpdf($mpdf)
@@ -193,18 +193,18 @@ class MpdfRenderer implements RendererInterface
     /**
      * @return string
      */
-    public function getFileName()
+    public function getFilename()
     {
-        return $this->fileName;
+        return $this->filename;
     }
 
     /**
-     * @param string $fileName
+     * @param string $filename
      * @return MpdfRenderer
      */
-    public function setFileName($fileName)
+    public function setFilename($filename)
     {
-        $this->fileName = $fileName;
+        $this->filename = $filename;
         return $this;
     }
 
