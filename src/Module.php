@@ -4,14 +4,18 @@
  * @copyright Copyright (c) 2016 Zetta Code
  */
 
+declare(strict_types=1);
+
 namespace Zetta\ZendMPDF;
+
+use Traversable;
 
 class Module
 {
     /**
      * Returns configuration to merge with application configuration
      *
-     * @return array|\Traversable
+     * @return array|Traversable
      */
     public function getConfig()
     {

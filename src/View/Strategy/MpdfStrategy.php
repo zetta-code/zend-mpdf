@@ -4,6 +4,8 @@
  * @copyright Copyright (c) 2016 Zetta Code
  */
 
+declare(strict_types=1);
+
 namespace Zetta\ZendMPDF\View\Strategy;
 
 use Zend\EventManager\AbstractListenerAggregate;
@@ -31,8 +33,8 @@ class MpdfStrategy extends AbstractListenerAggregate
     /**
      * Attach the aggregate to the specified event manager
      *
-     * @param  EventManagerInterface $events
-     * @param  int $priority
+     * @param EventManagerInterface $events
+     * @param int $priority
      * @return void
      */
     public function attach(EventManagerInterface $events, $priority = 1)
@@ -44,7 +46,7 @@ class MpdfStrategy extends AbstractListenerAggregate
     /**
      * Detect if we should use the MpdfRenderer based on model type
      *
-     * @param  ViewEvent $e
+     * @param ViewEvent $e
      * @return null|MpdfRenderer
      */
     public function selectRenderer(ViewEvent $e)
@@ -63,7 +65,7 @@ class MpdfStrategy extends AbstractListenerAggregate
     /**
      * Inject the response with the PDF payload and appropriate Content-Type header
      *
-     * @param  ViewEvent $e
+     * @param ViewEvent $e
      * @return void
      */
     public function injectResponse(ViewEvent $e)

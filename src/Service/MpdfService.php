@@ -4,6 +4,8 @@
  * @copyright Copyright (c) 2016 Zetta Code
  */
 
+declare(strict_types=1);
+
 namespace Zetta\ZendMPDF\Service;
 
 use Interop\Container\ContainerInterface;
@@ -65,7 +67,7 @@ class MpdfService implements FactoryInterface
         return new Mpdf($config);
     }
 
-    public function makeDirs()
+    public function makeDirs(): void
     {
         if (!file_exists($this->dir)) {
             mkdir($this->dir, 0777, true);
@@ -81,7 +83,7 @@ class MpdfService implements FactoryInterface
     /**
      * @return array
      */
-    public function mpdfConfig()
+    public function mpdfConfig(): array
     {
         $defaultConfig = (new ConfigVariables())->getDefaults();
         $fontDir = $defaultConfig['fontDir'];

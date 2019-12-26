@@ -4,6 +4,8 @@
  * @copyright Copyright (c) 2016 Zetta Code
  */
 
+declare(strict_types=1);
+
 namespace Zetta\ZendMPDF\View\Renderer;
 
 use Interop\Container\ContainerInterface;

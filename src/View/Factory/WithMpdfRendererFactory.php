@@ -4,13 +4,15 @@
  * @copyright Copyright (c) 2016 Zetta Code
  */
 
-namespace Zetta\ZendMPDF\View\Strategy;
+declare(strict_types=1);
+
+namespace Zetta\ZendMPDF\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Zetta\ZendMPDF\View\Renderer\MpdfRenderer;
 
-class MpdfStrategyFactory implements FactoryInterface
+class WithMpdfRendererFactory implements FactoryInterface
 {
     /**
      * {@inheritdoc}
@@ -18,8 +20,7 @@ class MpdfStrategyFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $mpdfRenderer = $container->get(MpdfRenderer::class);
-        $mpdfStrategy = new MpdfStrategy($mpdfRenderer);
 
-        return $mpdfStrategy;
+        return $requestedName($mpdfRenderer);
     }
 }

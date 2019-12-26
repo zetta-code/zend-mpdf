@@ -4,9 +4,13 @@
  * @copyright Copyright (c) 2016 Zetta Code
  */
 
+declare(strict_types=1);
+
 namespace Zetta\ZendMPDF\View\Renderer;
 
+use ArrayAccess;
 use Mpdf\Mpdf;
+use Mpdf\MpdfException;
 use Zend\View\Model\ModelInterface;
 use Zend\View\Renderer\RendererInterface;
 use Zend\View\Resolver\ResolverInterface;
@@ -74,9 +78,10 @@ class MpdfRenderer implements RendererInterface
     /**
      * Renders values as a PDF
      *
-     * @param  string|ModelInterface $nameOrModel The script/resource process, or a view model
-     * @param  null|array|\ArrayAccess $values Values to use during rendering
+     * @param string|ModelInterface $nameOrModel The script/resource process, or a view model
+     * @param null|array|ArrayAccess $values Values to use during rendering
      * @return string The script output.
+     * @throws MpdfException
      */
     public function render($nameOrModel, $values = null)
     {

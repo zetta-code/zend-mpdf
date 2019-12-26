@@ -4,6 +4,8 @@
  * @copyright Copyright (c) 2016 Zetta Code
  */
 
+declare(strict_types=1);
+
 namespace Zetta\ZendMPDF\View\Model;
 
 use Zend\View\Model\ViewModel;
@@ -13,19 +15,19 @@ class MpdfModel extends ViewModel
     /**
      * O PDF é enviado como um anexo para ser visualizado
      */
-    const DESTINO_INLINE_NAVEGADOR = 'I';
+    const DESTINATION_INLINE_BROWSER = 'I';
     /**
      * O PDF é enviado como um anexo para ser baixado pelo navegador
      */
-    const DESTINO_DOWNLOAD_NAVEGADOR = 'D';
+    const DESTINATION_DOWNLOAD_BROWSER = 'D';
     /**
      * O arquivo é salvo no sistema de arquivo do servidor
      */
-    const DESTINO_SALVAR_EM_ARQUIVO = 'F';
+    const DESTINATION_OUTPUT_FILE = 'F';
     /**
      * Retorna o documento como string.
      */
-    const DESTINO_RETORNAR_COMO_STRING = 'S';
+    const DESTINATION_OUTPUT_STRING = 'S';
 
     /**
      * @var array
@@ -35,7 +37,7 @@ class MpdfModel extends ViewModel
         'paperOrientation' => 'portrait',
         'basePath' => '/',
         'filename' => 'filename.pdf',
-        'destination' => self::DESTINO_DOWNLOAD_NAVEGADOR,
+        'destination' => self::DESTINATION_DOWNLOAD_BROWSER,
         'debug' => false,
     ];
 
