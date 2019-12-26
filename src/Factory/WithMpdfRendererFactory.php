@@ -21,6 +21,6 @@ class WithMpdfRendererFactory implements FactoryInterface
     {
         $mpdfRenderer = $container->get(MpdfRenderer::class);
 
-        return $requestedName($mpdfRenderer);
+        return new $requestedName($mpdfRenderer);
     }
 }

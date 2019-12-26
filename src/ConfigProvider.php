@@ -11,7 +11,6 @@ namespace Zetta\ZendMPDF;
 use Traversable;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ServiceManager\Proxy\LazyServiceFactory;
-use Zetta\ZendMPDF\View\Strategy\MpdfStrategy;
 
 class ConfigProvider implements ConfigProviderInterface
 {
@@ -73,7 +72,7 @@ class ConfigProvider implements ConfigProviderInterface
     {
         return [
             'strategies' => [
-                MpdfStrategy::class,
+                View\Strategy\MpdfStrategy::class,
             ],
         ];
     }
