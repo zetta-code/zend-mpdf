@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Zetta\ZendMPDF\View\Strategy;
 
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventManagerInterface;
-use Zend\View\ViewEvent;
+use Laminas\EventManager\AbstractListenerAggregate;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\View\ViewEvent;
 use Zetta\ZendMPDF\View\Model\MpdfModel;
 use Zetta\ZendMPDF\View\Renderer\MpdfRenderer;
 
@@ -53,7 +53,7 @@ class MpdfStrategy extends AbstractListenerAggregate
     {
         $model = $e->getModel();
 
-        if (!$model instanceof MpdfModel) {
+        if (! $model instanceof MpdfModel) {
             // no JsonModel; do nothing
             return;
         }
@@ -78,7 +78,7 @@ class MpdfStrategy extends AbstractListenerAggregate
 
         $result = $e->getResult();
 
-        if (!is_string($result)) {
+        if (! is_string($result)) {
             // @todo Potentially throw an exception here since we should *always* get back a result.
             return;
         }

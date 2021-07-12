@@ -9,11 +9,11 @@ declare(strict_types=1);
 namespace Zetta\ZendMPDF\Service;
 
 use Interop\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\Stdlib\ArrayUtils;
 use Mpdf\Config\ConfigVariables;
 use Mpdf\Config\FontVariables;
 use Mpdf\Mpdf;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\Stdlib\ArrayUtils;
 
 class MpdfService implements FactoryInterface
 {
@@ -69,13 +69,13 @@ class MpdfService implements FactoryInterface
 
     public function makeDirs(): void
     {
-        if (!file_exists($this->dir)) {
+        if (! file_exists($this->dir)) {
             mkdir($this->dir, 0777, true);
         }
-        if (!file_exists($this->temp)) {
+        if (! file_exists($this->temp)) {
             mkdir($this->temp, 0777, true);
         }
-        if (!file_exists($this->ttfonts)) {
+        if (! file_exists($this->ttfonts)) {
             mkdir($this->ttfonts, 0777, true);
         }
     }

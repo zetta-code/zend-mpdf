@@ -17,13 +17,14 @@
     }
   ],
   "require": {
-    "php": "^7.4",
-    "zendframework/zend-stdlib": "^3.2",
+    "php": "^7.4 || ^8.0",
+    "laminas/laminas-stdlib": "^3.4",
     "mpdf/mpdf": "^8.0",
-    "ocramius/proxy-manager": "^2.5"
+    "ocramius/proxy-manager": "^2.13",
+    "laminas/laminas-dependency-plugin": "^2.1"
   },
   "require-dev": {
-    "zendframework/zend-mvc": "^3.1"
+    "laminas/laminas-mvc": "^3.2"
   },
   "autoload": {
     "psr-4": {
@@ -31,7 +32,7 @@
     }
   },
   "extra": {
-    "zf": {
+    "laminas": {
       "component": "Zetta\\ZendMPDF",
       "config-provider": "Zetta\\ZendMPDF\\ConfigProvider"
     }

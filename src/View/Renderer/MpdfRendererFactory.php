@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Zetta\ZendMPDF\View\Renderer;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\View\Renderer\RendererInterface;
-use Zend\View\Resolver\ResolverInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\View\Renderer\RendererInterface;
+use Laminas\View\Resolver\ResolverInterface;
 use Zetta\ZendMPDF\Service\MpdfService;
 
 class MpdfRendererFactory implements FactoryInterface

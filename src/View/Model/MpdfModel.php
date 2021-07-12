@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Zetta\ZendMPDF\View\Model;
 
-use Zend\View\Model\ViewModel;
+use Laminas\View\Model\ViewModel;
 
 class MpdfModel extends ViewModel
 {

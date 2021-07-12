@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Zetta\ZendMPDF\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Zetta\ZendMPDF\View\Renderer\MpdfRenderer;
 
 class WithMpdfRendererFactory implements FactoryInterface

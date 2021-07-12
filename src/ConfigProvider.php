@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Zetta\ZendMPDF;
 
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\ServiceManager\Proxy\LazyServiceFactory;
 use Traversable;
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Zend\ServiceManager\Proxy\LazyServiceFactory;
 
 class ConfigProvider implements ConfigProviderInterface
 {

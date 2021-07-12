@@ -25,7 +25,7 @@ composer require zetta-code/zend-mpdf
 
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 use Zetta\ZendMPDF\View\Model\MpdfModel;
 
 class IndexController extends AbstractActionController
