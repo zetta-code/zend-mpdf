@@ -20,7 +20,7 @@
     "php": "^7.4 || ^8.0",
     "laminas/laminas-stdlib": "^3.4",
     "mpdf/mpdf": "^8.0",
-    "ocramius/proxy-manager": "^2.13",
+    "ocramius/proxy-manager": "^2.10",
     "laminas/laminas-dependency-plugin": "^2.1"
   },
   "require-dev": {
